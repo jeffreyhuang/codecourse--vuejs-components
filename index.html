@@ -8,23 +8,18 @@
 </head>
 <body>
   <div id="app">
-    <sidebar></sidebar>
-
-    <main-content></main-content>
+    <user></user>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
-    Vue.component('sidebar', {
-      template: `
-        <aside>Sidebar</aside>
-      `
-    })
-
-    Vue.component('main-content', {
-      template: `
-        <div>Main content</div>
-      `
+    Vue.component('user', {
+      data () {
+        return {
+          name: 'Jeffrey'
+        }
+      },
+      template: `<div class="user">{{ name }}</div>`
     })
 
     let app = new Vue({
