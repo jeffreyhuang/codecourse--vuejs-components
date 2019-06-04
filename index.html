@@ -14,7 +14,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
     Vue.component('user', {
-      template: `<div class="user">name</div>`
+      data () {
+        return {
+          name: 'Jeffrey'
+        }
+      },
+      template: `<div class="user">{{ name }}</div>`
     })
 
     let app = new Vue({
