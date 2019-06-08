@@ -8,15 +8,34 @@
 </head>
 <body>
   <div id="app">
-
+    <posts></posts>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
+    let Posts = {
+      data () {
+        return {
+          posts: [
+            { id: 1, title: 'Post one' },
+            { id: 2, title: 'Post two' },
+            { id: 3, title: 'Post three' }
+          ]
+        }
+      },
+      template: `
+        <div class="posts">
+          <div class="post" v-for="post in posts">
+            <h1>{{ post.title }}</h1>
+          </div>
+        </div>
+      `
+    }
+
     let app = new Vue({
       el: '#app',
       components: {
-        //
+        'posts': Posts
       }
     })
   </script>
