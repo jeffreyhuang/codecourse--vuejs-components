@@ -8,43 +8,15 @@
 </head>
 <body>
   <div id="app">
-    <post></post>
+
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let User = {
-      data () {
-        return {
-          name: 'Jeffrey'
-        }
-      },
-      template: `<div class="user">{{ name }}</div>`
-    }
-
-    let Post = {
-      data () {
-        return {
-          title: 'Lorem ipsum dolor sit amet.'
-        }
-      },
-      components: {
-        'user': User
-      },
-      template: `
-        <div class="post">
-          <h1>{{ title }}</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.</p>
-          <user></user>
-        </div>
-      `
-    }
-
     let app = new Vue({
       el: '#app',
       components: {
-        'post': Post
+        //
       }
     })
   </script>
