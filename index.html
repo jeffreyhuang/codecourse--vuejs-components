@@ -8,64 +8,22 @@
 </head>
 <body>
   <div id="app">
-    <posts></posts>
+    <upload upload-endpoint="upload.php"></upload>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let User = {
+    let Upload = {
       props: [
-        'user'
+        'uploadEndpoint'
       ],
-      template: `
-        <div class="user">
-          {{ user.name }}
-        </div>
-      `
-    }
-
-    let Post = {
-      components: {
-        'user': User
-      },
-      props: [
-        'post'
-      ],
-      template: `
-        <div class="post">
-          <h1>{{ post.title }}</h1>
-          <user :user="post.user"></user>
-        </div>
-      `
-    }
-
-    let Posts = {
-      components: {
-        'post': Post
-      },
-      data () {
-        return {
-          posts: [
-            { id: 1, title: 'Post one', user: { name: 'Jeffrey' } },
-            { id: 2, title: 'Post two', user: { name: 'Mary' } },
-            { id: 3, title: 'Post three', user: { name: 'Isaiah' } }
-          ]
-        }
-      },
-      template: `
-        <div class="posts">
-          <post
-            v-for="post in posts"
-            :key="post.id"
-            :post="post"></post>
-        </div>
-      `
+      template: `<p>{{ uploadEndpoint }}</p>`
     }
 
     let app = new Vue({
       el: '#app',
       components: {
-        'posts': Posts
+        'upload': Upload
       }
     })
   </script>
