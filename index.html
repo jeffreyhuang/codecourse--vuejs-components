@@ -13,18 +13,38 @@
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
+    let UpperCaseMessage = {
+      props: [
+        'message'
+      ],
+      template: `
+        <p>{{ upperCaseMessage }}</p>
+      `,
+      computed: {
+        upperCaseMessage () {
+          return this.message.toUpperCase()
+        }
+      }
+    }
+
     let LowerCaseMessage = {
       props: [
         'message'
       ],
       template: `
-        <p>{{ message }}</p>
-      `
+        <p>{{ lowerCaseMessage }}</p>
+      `,
+      computed: {
+        lowerCaseMessage () {
+          return this.message.toLowerCase()
+        }
+      }
     }
 
     let Message = {
       components: {
-        'lower-case-message': LowerCaseMessage
+        'lower-case-message': LowerCaseMessage,
+        'upper-case-message': UpperCaseMessage
       },
       data () {
         return {
@@ -35,6 +55,7 @@
         <div>
           <input type="text" v-model="message" />
           <lower-case-message :message="message"></lower-case-message>
+          <upper-case-message :message="message"></upper-case-message>
         </div>
       `
     }
