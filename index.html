@@ -8,22 +8,15 @@
 </head>
 <body>
   <div id="app">
-    <upload upload-endpoint="upload.php"></upload>
+
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let Upload = {
-      props: [
-        'uploadEndpoint'
-      ],
-      template: `<p>{{ uploadEndpoint }}</p>`
-    }
-
     let app = new Vue({
       el: '#app',
       components: {
-        'upload': Upload
+        //
       }
     })
   </script>
