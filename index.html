@@ -8,23 +8,13 @@
 </head>
 <body>
   <div id="app">
-    <num :number="[1, 2, 3]"></num>
+
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let Num = {
-      props: [
-        'number'
-      ],
-      template: `<p>{{ number[0] }}</p>`
-    }
-
     let app = new Vue({
       el: '#app',
-      components: {
-        'num': Num
-      }
     })
   </script>
 </body>
