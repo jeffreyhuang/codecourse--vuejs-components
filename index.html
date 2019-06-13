@@ -8,22 +8,22 @@
 </head>
 <body>
   <div id="app">
-    <upload upload-endpoint="upload.php"></upload>
+    <num :number="[1, 2, 3]"></num>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let Upload = {
+    let Num = {
       props: [
-        'uploadEndpoint'
+        'number'
       ],
-      template: `<p>{{ uploadEndpoint }}</p>`
+      template: `<p>{{ number[0] }}</p>`
     }
 
     let app = new Vue({
       el: '#app',
       components: {
-        'upload': Upload
+        'num': Num
       }
     })
   </script>
