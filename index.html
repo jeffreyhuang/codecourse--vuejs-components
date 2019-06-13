@@ -8,13 +8,42 @@
 </head>
 <body>
   <div id="app">
-
+    <message></message>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
+    let LowerCaseMessage = {
+      props: [
+        'message'
+      ],
+      template: `
+        <p>{{ message }}</p>
+      `
+    }
+
+    let Message = {
+      components: {
+        'lower-case-message': LowerCaseMessage
+      },
+      data () {
+        return {
+          message: ''
+        }
+      },
+      template: `
+        <div>
+          <input type="text" v-model="message" />
+          <lower-case-message :message="message"></lower-case-message>
+        </div>
+      `
+    }
+
     let app = new Vue({
       el: '#app',
+      components: {
+        'message': Message
+      }
     })
   </script>
 </body>
