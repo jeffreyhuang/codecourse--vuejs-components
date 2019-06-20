@@ -8,15 +8,29 @@
 </head>
 <body>
   <div id="app">
-
+    <num :numbers="[1, 2, 3, 4]"></num>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
+    let Num = {
+      props: {
+        numbers: {
+          type: Array
+        }
+      },
+      template: `<p>{{ added }}</p> `,
+      computed: {
+        added () {
+          return this.numbers.reduce((a, b) => a + b, 0)
+        }
+      }
+    }
+
     let app = new Vue({
       el: '#app',
       components: {
-        //
+        'num': Num
       }
     })
   </script>
