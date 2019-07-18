@@ -13,20 +13,22 @@
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-
-    // child component
     let IncrementButton = {
+      props: {
+        incrementValue: {
+          default: 1
+        }
+      },
       template: `
         <button @click.prevent="increment">Increment</button>
       `,
       methods: {
         increment () {
-          // emit an event
+          this.$emit('increment', this.incrementValue)
         }
       }
     }
 
-    // parent component
     let Counter = {
       components: {
         'increment-button': IncrementButton
@@ -39,9 +41,17 @@
       template: `
         <div>
           {{ number }}
-          <increment-button></increment-button>
+          <increment-button
+            :increment-value="10"
+            @increment="increaseNumber"
+          ></increment-button>
         </div>
-      `
+      `,
+      methods: {
+        increaseNumber (incrementValue) {
+          this.number += incrementValue
+        }
+      }
     }
 
     let app = new Vue({
