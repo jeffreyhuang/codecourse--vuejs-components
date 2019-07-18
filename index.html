@@ -8,53 +8,49 @@
 </head>
 <body>
   <div id="app">
-    <counter :default-numbers="[1, 2, 3]"></counter>
+    <counter></counter>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let Counter = {
+    let IncrementButton = {
       props: {
-        defaultNumbers: {
-          type: Array,
-          default () {
-            return []
-          }
+        incrementValue: {
+          default: 1
         }
+      },
+      template: `
+        <button @click.prevent="increment">Increment</button>
+      `,
+      methods: {
+        increment () {
+          this.$emit('increment', this.incrementValue)
+        }
+      }
+    }
+
+    let Counter = {
+      components: {
+        'increment-button': IncrementButton
       },
       data () {
         return {
-          numbers: this.defaultNumbers
+          number: 0
         }
       },
       template: `
         <div>
-          <ul>
-            <li v-for="number, index in numbers">
-              {{ number }}
-              <a href="#" @click.prevent="increment(index)">Increment</a>
-            </li>
-          </ul>
-
-          <a href="#" @click.prevent="addNewNumber">Add a new number</a>
+          {{ number }}
+          <increment-button
+            :increment-value="10"
+            @increment="increaseNumber"
+          ></increment-button>
         </div>
       `,
       methods: {
-        increment (index) {
-          this.numbers = this.numbers.map((number, i) => {
-            if (i === index) {
-              number++
-            }
-
-            return number
-          })
-        },
-        addNewNumber () {
-          this.numbers.push(1)
+        increaseNumber (incrementValue) {
+          this.number += incrementValue
         }
-      },
-      beforeUpdate () {
-        console.log('update')
       }
     }
 
