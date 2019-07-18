@@ -8,32 +8,60 @@
 </head>
 <body>
   <div id="app">
-    <num></num>
+    <counter :default-numbers="[1, 2, 3]"></counter>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   <script>
-    let Num = {
+    let Counter = {
       props: {
-        numbers: {
+        defaultNumbers: {
           type: Array,
           default () {
             return []
           }
         }
       },
-      template: `<p>{{ added }}</p> `,
-      computed: {
-        added () {
-          return this.numbers.reduce((a, b) => a + b, 0)
+      data () {
+        return {
+          numbers: this.defaultNumbers
         }
+      },
+      template: `
+        <div>
+          <ul>
+            <li v-for="number, index in numbers">
+              {{ number }}
+              <a href="#" @click.prevent="increment(index)">Increment</a>
+            </li>
+          </ul>
+
+          <a href="#" @click.prevent="addNewNumber">Add a new number</a>
+        </div>
+      `,
+      methods: {
+        increment (index) {
+          this.numbers = this.numbers.map((number, i) => {
+            if (i === index) {
+              number++
+            }
+
+            return number
+          })
+        },
+        addNewNumber () {
+          this.numbers.push(1)
+        }
+      },
+      beforeUpdate () {
+        console.log('update')
       }
     }
 
     let app = new Vue({
       el: '#app',
       components: {
-        'num': Num
+        'counter': Counter
       }
     })
   </script>
